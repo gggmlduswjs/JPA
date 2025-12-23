@@ -1,0 +1,43 @@
+팀  -- 회원    (하나의 팀에 여러 회원이 존재한다) 1 :다
+
+
+팀에서 팀에 속한 회원정보 조회가능  ( OneToMany)
+회원에서 팀정보조회가능   ( ManyToOne)
+
+0.연관관계의 주인 파악하기 (외래키를 가지고 있는 쪽)
+
+
+양방향연관관계의 주의점
+1.연관관계 주인인 Member에서 팀 정보를 설정해야 하며,
+ 회원에서 팀을 설정해야한다
+ member.setTeam(team); // 연관관계 주인이 외래 키를 관리하므로 DB 반영됨
+ member의 team_id 값이 설정되어 DB에도 반영됩니다.
+
+
+2. 순수객체까지 고려한 양방향
+Team team1 = new Team("1", "팀1");
+teamRepository.save(team1);
+
+Member member1 = new Member("member1", "회원1");
+Member member2 = new Member("member2", "회원2");
+
+member1.setTeam(team1); // 회원과 팀 연결
+member2.setTeam(team1);
+
+memberRepository.save(member1);
+memberRepository.save(member2);
+
+// 팀 객체의 멤버 리스트도 업데이트
+team1.getMembers().add(member1);
+team1.getMembers().add(member2);
+
+teamRepository.save(team1); // 팀 정보도 다시 저장하여 회원 목록이 업데이트되도록 함.
+
+
+3. 연관관계 편의 메서드가 필요할 수 있다
+
+
+
+
+
+

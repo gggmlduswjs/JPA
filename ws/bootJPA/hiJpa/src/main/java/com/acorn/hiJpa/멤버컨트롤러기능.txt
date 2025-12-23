@@ -1,0 +1,22 @@
+
+    ## Spring Dat Jpa가 기본으로 제공하는 매서드(일반적인 CRUD)
+
+    @GetMapping("/members/list")    => 모든회원정보조회  findAll
+    @GetMapping("/members/list2")    => 모든회원정보조회  findAll
+    @GetMapping("/members/detail/{id}")   => 회원상세조회 findById
+    @PostMapping("/members/register")    =>회원가입
+    @GetMapping("/members/modify")   => 회원수정
+    @GetMapping("/members/deleteMember")  =>회원 삭제하기
+
+
+     ## 쿼리매서드
+    @GetMapping("/members/name")   =>회원이름으로 조회  (쿼리매서드)
+
+
+     ## jpql 작성 (sql -> 테이블 대상,  jpql -> 엔티티 대상)
+    @GetMapping("/members/name-jpql")  =>회원이름으로 조회 ( jpql작성)
+
+
+    ##페이징
+    @GetMapping("/members/page")   =>회원조회 페이징
+    @GetMapping("/members/name/page")  =>회원조회 페이징 (회원이름으로 검색, 이름이 같은 사람 조회)

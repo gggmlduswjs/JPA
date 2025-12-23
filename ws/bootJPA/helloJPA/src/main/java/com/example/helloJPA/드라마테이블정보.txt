@@ -1,0 +1,20 @@
+
+
+
+ create table drama (
+        code bigint not null auto_increment,
+        actors varchar(255),
+        image_url varchar(255),
+        title varchar(255),
+        primary key (code)
+    )  ;
+
+
+
+iNSERT INTO drama (title, actors, image_url)
+VALUES
+('이태원 클라쓰', '박서준', 'https://i.namu.wiki/i/GP445hHn-VOk2EtrAX5O43p2YHj-oJzXobymoPpxjsX29R3wUfMnuuMuw5rqLHtSA4DJ3tu8eAHh7VM-Bdcyq_Ba3NkYLR0iYyO4WsZ5ejOKB7Kw4LibZs9paxliiYavA7bI2R0QWMfuJjbNvA_7HA.webp'),
+('도깨비', '공유',  'https://poc-cf-image.cjenm.com/resize/312/public/pcms/photogroup/B120161931/kr/B120161931_photogroup_1667984574038.jpg?v=1742978883'),
+('슬기로운 의사생활', '조정석', 'https://i.namu.wiki/i/9bShTQxNtxnBaiN3_DU1jdkN04XR33trvhylSqZN_NVkyrmG4QOuRSuQR8IWkRl63WdTd_tDn5pxxsKzYFwwnwHPwEE1lHCwxxRq7CF9fV0YdAbmtQXiHwG8zDE5Vst_3VSSAe0mqapuXW6aHpVE-g.webp');
+
+commit;

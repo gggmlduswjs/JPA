@@ -1,0 +1,55 @@
+1. Dependency 설치
+QueryDSL을 사용하기 위한 dependency들을 설치.
+
+dependencies {
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+}
+
+2. Configuration QueryDSL
+QueryDSL을 사용하는 방법은 여러가지가 있지만,
+ 프로젝트 어디에서나 사용할 수 있도록 QueryDSLConfig 클래스를 작성하여 Bean을 만드는 방법으로 선택
+
+@Configuration
+@RequiredArgsConstructor
+public class QueryDSLConfig {
+    private final EntityManager entityManager;
+
+    @Bean
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(entityManager);
+    }
+}
+지속성 컨텍스트와 상호작용하는데 사용되는 EntityManager를 JPAQueryFactory 에 주입을 하여 jpaQueryFactory Bean을 생성한다.
+
+
+2. 인터페이스 만들기
+
+  - 빌드수행하기
+  - Q클래스가 생성된다
+  ./gradlew compileJava
+
+  - 엔티티 클래스(@Entity)를 컴파일
+  - 동시에 querydsl-apt:jpa가 동작해서 QMember.java 같은 Q클래스 자동 생성
+
+
+3. 인테페이스 구현하기   (이름의 규칙이 있다)
+@Repository
+@RequiredArgsConstructor
+public class MemberCustomRepositoryImpl implements MemberCustomRepository {
+    private final JPAQueryFactory query;
+
+    @Override
+    public boolean existsByMemberEmail(String email) {
+        return query.selectOne()
+                .from(member)
+                .where(member.email.eq(email))
+                .fetchFirst() != null;
+    }
+}
+
+
+링크:
+https://medium.com/mo-zza/spring-data-jpa-querydsl-%EC%A0%81%EC%9A%A9-22a0364cd579

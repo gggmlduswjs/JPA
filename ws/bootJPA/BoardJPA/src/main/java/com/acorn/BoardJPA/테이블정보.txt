@@ -1,0 +1,52 @@
+
+drop table board;
+drop table user;
+
+
+
+CREATE TABLE user (
+    user_id VARCHAR(255) PRIMARY KEY,      -- id 컬럼
+    password VARCHAR(255) NOT NULL,         -- password 컬럼
+    name VARCHAR(255) NOT NULL,             -- name 컬럼
+    email VARCHAR(255) NOT NULL,            -- email 컬럼
+    CONSTRAINT user_email_unique UNIQUE (email) -- 이메일의 유니크 제약조건 (선택 사항)
+);
+
+CREATE TABLE board (
+    bno BIGINT AUTO_INCREMENT PRIMARY KEY,     -- 게시물 번호 (자동 증가)
+    title VARCHAR(255) NOT NULL,                -- 제목 컬럼
+    content TEXT,                               -- 내용 컬럼
+    view_cnt BIGINT DEFAULT 0,                  -- 조회수 (기본값 0)
+    user_id VARCHAR(255) NOT NULL,              -- 사용자 ID (Foreign Key)
+    in_date TIMESTAMP NOT NULL,                 -- 입력일 (TIMESTAMP)
+    up_date TIMESTAMP,                          -- 수정일 (TIMESTAMP)
+    FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE -- 외래키 (user_id) 참조, user 테이블의 user_id에 연결
+);
+
+
+INSERT INTO user (user_id, password, name, email )
+VALUES
+('user1', '1234', '권지언',  'jiun@example.com' ),
+('user2', '5678', '김민환', 'mh@example.com' ),
+('user4', '0911', '김유민', 'yumin@example.com' ),
+('user3', '1210', '윤현기', 'hyun@example.com' );
+
+
+
+
+
+INSERT INTO board (title, content, view_cnt, user_id, in_date, up_date)
+VALUES
+('첫 번째 게시글', '   겁나 재미있는 내용입니다 ', 0, 'user1', CURRENT_TIMESTAMP, NULL),
+('두 번째 게시글', '  배꼽이 빠질 듯한 내용입니다.', 0, 'user2', CURRENT_TIMESTAMP, NULL);
+
+
+commit;
+
+
+
+select * from user;
+select * from board;
+
+
+

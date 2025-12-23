@@ -1,0 +1,149 @@
+1.  acorntbl을 JPA로  기본 CRUD 사용해 보기
+2.  페이징쿼리 사용해 보기    
+3.  쿼리매서드 작성하기 
+     쿼리매서드를 조회하여 하나씩 작성해 보기
+4.   jpql로 작성하기
+5.  엔티티매니저(EntityManager)와 영속성 context에 대해서 알아보기
+
+ 
+
+## AcornService 만들기
+ 1. JPARepository상속받아어 AcornRepository만들기  (엔티티이름,  pk)
+   -save()  //엔티티
+   -findAll()
+   -findById()  // key
+   -setPoint() // 포인트변경하기(조회후 변경하기)
+   -deleteById() //key
+
+
+2. 쿼리매서드 작성하기
+   -이름으로 조회하기
+    List<Acorn> findByName(String name);
+   -포인트가 큰 순으로 조회
+    List<Acorn> findByPointGreaterThanOrderByPointDesc(int point);
+   -이름과 포인트로 조회하기
+    List<Acorn> findByNameAndPoint(String name, int point);
+
+3. jpql로 작성하기
+
+    // 1. 이름으로 조회
+    @Query("SELECT a FROM Acorn a WHERE a.name = :name")
+    List<Acorn> findByNameJPQL(@Param("name") String name);
+
+    // 2. 포인트가 큰 순으로 조회
+    @Query("SELECT a FROM Acorn a WHERE a.point > :point ORDER BY a.point DESC")
+    List<Acorn> findByPointGreaterThanJPQL(@Param("point") int point);
+
+    // 3. 이름과 포인트로 조회
+    @Query("SELECT a FROM Acorn a WHERE a.name = :name AND a.point = :point")
+    List<Acorn> findByNameAndPointJPQL(@Param("name") String name, @Param("point") int point);
+
+
+
+CREATE TABLE acorntbl_jpa_test (
+    id VARCHAR(10) PRIMARY KEY,
+    pw VARCHAR(10),
+    name VARCHAR(10),
+    point INT
+);
+ 
+
+INSERT INTO acorntbl_jpa_test(id, pw, name, point) VALUES
+('victoai', '0408', '우주연', 100),
+('dnehdgns', '1234', '우동훈', 150),
+('j.choi', '8256', '최정문', 500),
+('popstar', '0909', '이성빈', 111),
+('SMY', '0408', '손민영', 300),
+('jeongjiwon', '1007', '정지원', 999),
+('you__win_', '0610', '유승재', 100),
+('sword', '0723', '최성원', 119),
+('ldh', '5566', '이대훈', 110),
+('mhkim', '3616', '김민희', 155),
+('entlrqkr', '7126', '박두식', 9220),
+('LHR', '1111', '이혜린', 222),
+('gyu', '1019', '이동규', 123),
+('psw', '1234', '박성욱', 100),
+('ksh', '5678', '김서호', 500),
+('khh', '1234', '김현희', 1050),
+('jhy', '9999', '전희연', 1200),
+('taemin', '2323', '윤태민', 200);
+
+commit;
+
+
+
+##################
+ 
+
+@Entity
+@Table(name = "acorntbl")
+public class Acorn {
+
+    @Id
+    @Column(length = 10)
+    private String id;        // 아이디
+
+    @Column(length = 10, nullable = false)
+    private String pw;        // 비밀번호
+
+    @Column(length = 10, nullable = false)
+    private String name;      // 이름
+
+    @Column
+    private Integer point;    // 포인트
+
+    // 기본 생성자
+    public Acorn() {}
+
+    // 전체 생성자
+    public Acorn(String id, String pw, String name, Integer point) {
+        this.id = id;
+        this.pw = pw;
+        this.name = name;
+        this.point = point;
+    }
+
+    // Getter & Setter
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
+    }
+
+    @Override
+    public String toString() {
+        return "Acorn{" +
+                "id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                ", name='" + name + '\'' +
+                ", point=" + point +
+                '}';
+    }
+}
+

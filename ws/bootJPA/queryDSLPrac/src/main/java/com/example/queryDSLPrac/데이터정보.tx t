@@ -1,0 +1,19 @@
+CREATE TABLE acorntbl_querydsl_prac (
+    id VARCHAR(50) PRIMARY KEY,
+    pw VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    grade VARCHAR(10)
+);
+
+
+
+INSERT INTO acorntbl_querydsl_prac (id, pw, name, grade) VALUES
+('acorn01', 'pw1234', '홍길동', 'A'),
+('acorn02', 'pw2345', '김영희', 'B'),
+('acorn03', 'pw3456', '이철수', 'C'),
+('acorn04', 'pw4567', '박민수', 'B'),
+('acorn05', 'pw5678', '최지우', 'A');
+
+
+
+commit;

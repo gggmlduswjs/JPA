@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BoardTest.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BoardTest.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JPASample3.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JPASample3.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/bootJPA.iml" filepath="$PROJECT_DIR$/.idea/bootJPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/demo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/demo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/helloJPA.main.iml" filepath="$PROJECT_DIR$/.idea/modules/helloJPA.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hiJPA2.main.iml" filepath="$PROJECT_DIR$/.idea/modules/hiJPA2.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hiJpa.main.iml" filepath="$PROJECT_DIR$/.idea/modules/hiJpa.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/queryDSL.main.iml" filepath="$PROJECT_DIR$/.idea/modules/queryDSL.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/queryDSL1222.main.iml" filepath="$PROJECT_DIR$/.idea/modules/queryDSL1222.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/queryDSLPrac.main.iml" filepath="$PROJECT_DIR$/.idea/modules/queryDSLPrac.main.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Drama List</title>
+</head>
+<body>
+
+<h2>드라마 목록</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>제목</th>
+        <th>상세보기</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="drama : ${list}">
+        <td th:text="${drama.id}">1</td>
+        <td th:text="${drama.title}">드라마 제목</td>
+        <td th:text="${drama.actors}">드라마 배우</td>
+        <td>
+            <a th:href="@{/drama/{id}(id=${drama.id})}">
+                상세
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

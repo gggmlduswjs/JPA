@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h2>  고객 List  !!!!!!!!!!!!!</h2>
+<ul>
+  <li th:each=" item  : ${list}"  >    <span  th:text="${item.name}"></span>  <span th:text="${item.pw}"></span></li>
+</ul>
+
+</body>
+</html>

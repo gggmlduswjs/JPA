@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Members</title>
+</head>
+<body>
+
+<h1>Member List</h1>
+
+<form th:action="@{/members/name/page}" method="get">
+  <input type="text" name="name" th:value="${name}" placeholder="Search by name">
+  <button type="submit">Search</button>
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>pw</th>
+    <th>name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="member : ${membersPage.content}">
+    <td th:text="${member.id}">ID</td>
+    <td th:text="${member.pw}">pw</td>
+    <td th:text="${member.name}">name</td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- 페이징 처리 -->
+<div>
+  <span th:text="'Page ' + ${membersPage.number + 1} + ' of ' + ${membersPage.totalPages}"></span>
+
+  <div>
+    <!-- 이전 페이지 링크 -->
+    <a th:if="${membersPage.hasPrevious()}"
+       th:href="@{/members/name/page(name=${name}, page=${membersPage.number - 1}, size=${membersPage.size})}">Previous</a>
+
+    <!-- 다음 페이지 링크 -->
+    <a th:if="${membersPage.hasNext()}"
+       th:href="@{/members/name/page(name=${name}, page=${membersPage.number + 1}, size=${membersPage.size})}">Next</a>
+  </div>
+</div>
+
+</body>
+</html>

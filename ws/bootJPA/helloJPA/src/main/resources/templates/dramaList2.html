@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>드라마 목록 (페이징)</h1>
+<a href="/dramas/new">새 드라마 등록</a>
+<table border="1">
+    <tr>
+        <th>제목</th>
+        <th>배우</th>
+        <th>이미지</th>
+        <th>상세</th>
+    </tr>
+    <tr th:each="drama : ${dramas}">
+        <td th:text="${drama.title}"></td>
+        <td th:text="${drama.actors}"></td>
+        <td><img th:src="${drama.imageUrl}" width="100"/></td>
+        <td><a th:href="@{/dramas/{id}(id=${drama.id})}">상세</a></td>
+    </tr>
+</table>
+
+<!-- 페이징 -->
+<div>
+    <span th:if="${currentPage > 0}">
+        <a th:href="@{/drama/page(page=${currentPage - 1}, size=3)}">이전</a>
+    </span>
+    <!--전체페이지 보여주기 -->
+    <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+        <a th:href="@{/drama/page(page=${i}, size=3)}"
+           th:text="${i + 1}"
+           th:classappend="${i == currentPage}? 'current' : ''"></a>
+    </span>
+    <span th:if="${currentPage < totalPages - 1}">
+        <a th:href="@{/drama/page(page=${currentPage + 1}, size=3)}">다음</a>
+    </span>
+</div>
+<style>
+    .current {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,23 @@
+✅ CrudRepository가 제공하는 기본 메서드
+메서드	설명
+save(S entity)	새로운 엔티티 저장 또는 수정
+saveAll(Iterable<S> entities)	여러 엔티티 저장
+findById(ID id)	ID로 엔티티 조회 (Optional 반환)
+existsById(ID id)	해당 ID가 존재하는지 여부
+findAll()	모든 엔티티 조회
+findAllById(Iterable<ID> ids)	주어진 ID 목록에 해당하는 모든 엔티티 조회
+count()	전체 엔티티 개수 반환
+deleteById(ID id)	ID로 엔티티 삭제
+delete(Entity entity)	엔티티 삭제
+deleteAll(Iterable<? extends T> entities)	주어진 모든 엔티티 삭제
+deleteAll()	모든 엔티티 삭제
+
+✅ JpaRepository가 추가로 제공하는 메서드
+CrudRepository + PagingAndSortingRepository 기능을 포함하며 다음이 추가됨:
+
+메서드	설명
+findAll(Sort sort)	정렬 조건에 맞는 모든 엔티티 조회
+findAll(Pageable pageable)	페이징된 엔티티 목록 조회
+Page<Customer> findByNameContaining(String keyword, Pageable pageable);
+
+

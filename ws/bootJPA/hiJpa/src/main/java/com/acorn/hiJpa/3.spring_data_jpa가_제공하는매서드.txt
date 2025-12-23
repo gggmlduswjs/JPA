@@ -1,0 +1,33 @@
+기본 제공 메서드
+다음은 JpaRepository에서 제공하는 주요 메서드
+
+CRUD 관련 메서드
+
+
+T save(S entity)
+
+엔티티를 저장
+Optional<T> findById(ID id)
+
+ID를 기준으로 엔티티를 조회
+boolean existsById(ID id)
+
+특정 ID를 가진 엔티티가 존재하는지 확인
+List<T> findAll()
+
+모든 엔티티를 조회
+List<T> findAllById(Iterable<ID> ids)
+
+여러 ID에 해당하는 엔티티를 조회
+void deleteById(ID id)
+
+ID에 해당하는 엔티티를 삭제
+void delete(T entity)
+
+특정 엔티티를 삭제
+void deleteAll(Iterable<? extends T> entities)
+
+여러 엔티티를 삭제
+void deleteAll()
+
+모든 엔티티를 삭제

@@ -1,0 +1,20 @@
+
+--하나 조회 , 아이디로 조회하기 (pk)
+findById(1l);
+
+
+-- 전체조회하기
+findAll()
+
+
+--저장하기
+save( Drama  엔티티);
+
+
+--변경
+1개 조회후  findById
+엔티티 변경하기
+
+
+--삭제하기
+deleteById(1l);

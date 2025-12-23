@@ -1,0 +1,11 @@
+
+
+Optional<T>
+
+get :객체를 꺼내옴, 오류발생할 수 있음, 존재하는경우만 꺼내기
+isPresent()   // 매개변수 없음,   true, false
+ifPresent();  // 매개변수에 Consumer 구현 => 존재한는 객체를 제공받아서 소비함 , 반환없음
+.orElse() ;//없는 경우 객체를 생성할 수 있음
+.orElseThrow(); // 없는경우에 예외발생
+.orElseThrow(); // 없는경우에 예외발생    , supplier매개변수로 원하는 예외를 발생시킬 수 있음
+

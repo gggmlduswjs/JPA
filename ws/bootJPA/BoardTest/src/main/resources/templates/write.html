@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div  >
+  <h2 >게시판 쓰기</h2>
+  <form id="form" class="frm" method="post">
+    <!-- 글번호-->
+
+    <input type="hidden" name="bno" th:value="${board.bno}" >
+    <input type="hidden" name="user" th:value="${board.user.id}">
+
+
+    <input name="title" type="text" placeholder="제목을 입력해 주세요."   th:value="${board.title}"   ><br>
+    <textarea name="content" rows="20" placeholder="내용을 입력해 주세요."  th:text="${board.content}"  ></textarea><br>
+
+    <button type="button" id="writeBtn"  >  등록</button>
+    <button type="button" id="listBtn"  >  목록</button>
+  </form>
+  <script>
+    let formCheck = function () {
+      let form = document.getElementById("form");
+      if (form.title.value == "") {
+        alert("제목을 입력해 주세요.");
+        form.title.focus();
+        return false;
+      }
+
+      if (form.content.value == "") {
+        alert("내용을 입력해 주세요.");
+        form.content.focus();
+        return false;
+      }
+      return true;
+    };
+
+    $("#writeBtn").on("click", function(){
+      let form = $("#form");
+      // form.attr("action", "/write");
+      form.attr("action", "[[@{/write}]]");
+      form.attr("method", "post");
+
+      if(formCheck())
+        form.submit();
+    });
+
+    $("#listBtn").on("click", function () {
+      location.href = "[[@{/list}]]";
+    });
+  </script>
+</div>
+</body>
+</html>

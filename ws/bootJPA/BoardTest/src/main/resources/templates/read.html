@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div>
+  <h2 >게시판 읽기</h2>
+  <form id="form" >
+    <input type="hidden" name="bno" th:value="${board.bno}">
+
+    <input name="title" type="text" th:value="${board.title}" readonly='readonly'><br>
+    <textarea name="content" rows="20" th:text="${board.content}" readonly='readonly'>content</textarea><br>
+
+    <button type="button" id="modifyBtn"  > 수정</button>
+    <button type="button" id="removeBtn"  >  삭제</button>
+    <button type="button" id="listBtn"  > 목록</button>
+  </form>
+  <script>
+    $("#removeBtn").on("click", function(){
+      if(!confirm("정말로 삭제하시겠습니까?")) return;
+
+      let form = $("#form");
+      form.attr("action", "[[@{/remove(bno=${board.bno})}]]");
+      form.attr("method", "post");
+      form.submit();
+    });
+
+    $("#modifyBtn").on("click", function(){
+      location.href="[[@{/modify(bno=${board.bno})}]]"
+    });
+
+    $("#listBtn").on("click", function(){
+      location.href="[[@{/list}]]";
+    });
+  </script>
+</div>
+</body>
+</html>

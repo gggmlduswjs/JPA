@@ -1,0 +1,63 @@
+
+
+
+
+
+Acorn 테이블에 CRUD 하기
+
+
+1. Repository만들기
+ - 전체 회원조회
+ - 아이디기준 한 명 조회
+ - 새로운 회원 저장하기
+ - 회원정보 변경하기
+ - 회원 삭제하기
+
+
+
+
+#### JPA의 특별한 변경 ### 변경감지
+변경은
+변경감지에 의해서 자동으로  Update
+@Transactional   애너테이션 필요 ( Dirty checking - 변경감지 )
+
+
+
+2. 쿼리매서드 작성하기 , 다양한 쿼리매서드 지원  (쿼리를 직접 작성하지 않는다)
+findByNameContaining( String name)
+
+
+규칙
+findBy속성명(필드명)
+
+- findByName( String name)  -   (이름으로 조회 )
+- findByPw( String pw)   -     (비밀번호로 조회)
+- findByNameContaining( String name ) -  이름이 포함된 거 조회
+
+
+-- 나이가 20대인 사람 조회
+findByAgeBetween( 20 , 29)  - 나이 속성(age)가 between   사이에 있는  회원 조회
+
+
+
+
+--더 복잡한것은
+JPQL  작성
+
+public interface PersonRepository extends JpaRepository<Member, Long> {
+
+       @Query("SELECT m  FROM Member  m  WHERE m.name = :name AND m.pw = :pw")
+       List<Member> findByNameAndPassword(@Param("name") String name, @Param("pw") String password);
+}
+
+
+
+//쿼리가 작성됨
+seelct * from acorntbl_jpa  where name= ?  and  pw  =?
+
+
+
+
+
+
+

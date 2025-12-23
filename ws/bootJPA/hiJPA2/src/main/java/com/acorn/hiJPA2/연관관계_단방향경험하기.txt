@@ -1,0 +1,80 @@
+
+
+!!!!!!!!!
+회원정보를 조회하면 회원의 팀정보까지 얻을 수 있다
+
+내부적으로 조인쿼리발생
+설정에 따라 달라짐
+
+
+1)모든회원 조회하기
+2)특정회원 조회하기
+3)회원 저장하기
+4)팀 id로 회원조회하기 (쿼리매서드)
+5)팀 id로 회원조회하기 ( jpql  -join fetch  )
+
+
+join &  join fetch 차이
+
+1.join
+쿼리매서드에서는  회원정보가져오기  회원에 대한 팀정보 가져오기가 개별적으로 수행됨 , 팀정보를 얻을 때 수행됨
+아래 쿼리 3개는 같다
+
+  1)   List<Member> findByTeamId(Long teamId);    // Team객체의 id로 조회
+  2)   @Query("SELECT  m FROM Member m WHERE m.team.id = :teamId")
+  3)   @Query("SELECT m FROM Member m JOIN   m.team t WHERE t.id = :id"")
+
+
+ 2. join fetch
+ @Query("SELECT m FROM Member m JOIN FETCH m.team t WHERE t.id = :id")
+
+ 조인쿼리가 한 번만 발생한다 .
+
+
+ 두개를 실행시켜보면
+ jpa에서 발생된 쿼리를 볼 수 있다
+
+
+1. 2개의 쿼리가 개별적으로 수행됨
+ select
+        m1_0.id,
+        m1_0.name,
+        m1_0.team_id
+    from
+        acorntbl_jpa2 m1_0
+    where
+        m1_0.team_id=?
+
+
+  select
+        t1_0.id,
+        t1_0.name
+    from
+        team t1_0
+    where
+        t1_0.id=?
+
+
+2.
+   select
+        m1_0.id,
+        m1_0.name,
+        m1_0.team_id,
+        t1_0.id,
+        t1_0.name
+    from
+        acorntbl_jpa2 m1_0
+    join
+        team t1_0
+            on t1_0.id=m1_0.team_id
+    where
+        m1_0.team_id=?
+
+
+
+*알아두기( 다음 예제에 있음 ! )
+쿼리매서드라고 해서 무조건 개별 쿼리가 각 각 실행되는 것은 아니다
+
+JPA에서는 조회 조건이 직접 외래키 컬럼에 걸리는 경우에는 조인 없이 단순 쿼리가 실행되고,
+조건이 연관 엔티티의 속성에 걸릴 경우 JPA가 내부적으로 JOIN 쿼리를 생성한다.
+따라서 상황에 따라 단일 쿼리 또는 조인 쿼리가 자동으로 선택된다.

@@ -1,0 +1,28 @@
+번호	반환 타입	네이밍 메서드	JPQL	실제 SQL
+1	List<Customer>	findByName(String name)
+   SELECT c FROM Customer c WHERE c.name = ?1
+   SELECT * FROM customer WHERE name = ?
+
+
+2	List<Customer>	findByNameAndAge(String name, int age)
+    SELECT c FROM Customer c WHERE c.name = ?1 AND c.age = ?2
+    SELECT * FROM customer WHERE name = ? AND age = ?
+
+3	List<Customer>	findByNameOrAge(String name, int age)	SELECT c FROM Customer c WHERE c.name = ?1 OR c.age = ?2	SELECT * FROM customer WHERE name = ? OR age = ?
+4	List<Customer>	findByAgeGreaterThan(int age)	SELECT c FROM Customer c WHERE c.age > ?1	SELECT * FROM customer WHERE age > ?
+5	List<Customer>	findByAgeLessThan(int age)	SELECT c FROM Customer c WHERE c.age < ?1	SELECT * FROM customer WHERE age < ?
+6	List<Customer>	findByAgeBetween(int start, int end)	SELECT c FROM Customer c WHERE c.age BETWEEN ?1 AND ?2	SELECT * FROM customer WHERE age BETWEEN ? AND ?
+7	List<Customer>	findByEmailIsNull()	SELECT c FROM Customer c WHERE c.email IS NULL	SELECT * FROM customer WHERE email IS NULL
+8	List<Customer>	findByEmailIsNotNull()	SELECT c FROM Customer c WHERE c.email IS NOT NULL	SELECT * FROM customer WHERE email IS NOT NULL
+9	List<Customer>	findByNameLike(String pattern)	SELECT c FROM Customer c WHERE c.name LIKE ?1	SELECT * FROM customer WHERE name LIKE ?
+10	List<Customer>	findByNameStartingWith(String prefix)	SELECT c FROM Customer c WHERE c.name LIKE CONCAT(?1, '%')	SELECT * FROM customer WHERE name LIKE CONCAT(?, '%')
+11	List<Customer>	findByNameEndingWith(String suffix)	SELECT c FROM Customer c WHERE c.name LIKE CONCAT('%', ?1)	SELECT * FROM customer WHERE name LIKE CONCAT('%', ?)
+12	List<Customer>	findByNameContaining(String keyword)	SELECT c FROM Customer c WHERE c.name LIKE CONCAT('%', ?1, '%')	SELECT * FROM customer WHERE name LIKE CONCAT('%', ?, '%')
+13	List<Customer>	findByStatusIn(List<String> statusList)	SELECT c FROM Customer c WHERE c.status IN ?1	SELECT * FROM customer WHERE status IN (?, ?, ...)
+14	Long	countByName(String name)	SELECT COUNT(c) FROM Customer c WHERE c.name = ?1	SELECT COUNT(*) FROM customer WHERE name = ?
+15	void	deleteByName(String name)	DELETE FROM Customer c WHERE c.name = ?1	DELETE FROM customer WHERE name = ?
+16	boolean	existsByEmail(String email)	SELECT CASE WHEN (COUNT(c) > 0) THEN TRUE ELSE FALSE END FROM Customer c WHERE c.email = ?1	SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END FROM customer WHERE email = ?
+17	List<Customer>	findTop3ByOrderByAgeDesc()	SELECT c FROM Customer c ORDER BY c.age DESC	SELECT * FROM customer ORDER BY age DESC LIMIT 3
+18	List<Customer>	findFirst5ByOrderByCreatedDateAsc()	SELECT c FROM Customer c ORDER BY c.createdDate ASC	SELECT * FROM customer ORDER BY created_date ASC LIMIT 5
+19	List<Customer>	findByNameIgnoreCase(String name)	SELECT c FROM Customer c WHERE LOWER(c.name) = LOWER(?1)	SELECT * FROM customer WHERE LOWER(name) = LOWER(?)
+20	List<Customer>	findDistinctByName(String name)	SELECT DISTINCT c FROM Customer c WHERE c.name = ?1	SELECT DISTINCT * FROM customer WHERE name = ?

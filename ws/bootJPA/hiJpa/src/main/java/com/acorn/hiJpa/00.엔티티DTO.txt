@@ -1,0 +1,11 @@
+
+
+
+MemberRequest
+MemberResponse
+
+
+
+
+MemberRequest  :사용자로 부터 입력 받는 용도
+MemberResponse :서버가 클라이언트에게 돌려주는 데이터

@@ -1,0 +1,48 @@
+
+
+
+
+고객정보 저장될 공간  ( 테이블)
+
+테이블
+
+crud   => create(insert ) , read( select ), u(update) , d(delete)
+
+CREATE TABLE acorntbl_jpa (
+    id VARCHAR(10) PRIMARY KEY,
+    pw VARCHAR(10),
+    name VARCHAR(10)
+);
+
+
+--crud   => create(insert ) , read( select ), u(update) , d(delete)
+
+
+--crud   => create(insert ) , read( select ), u(update) , d(delete)
+
+select *  from acorntbl_jpa ;
+insert into acorntbl_jpa(id, pw, name)  values('victoai', '0408', '우주연'  );
+insert into acorntbl_jpa(id, pw, name)  values('dnehdgns', '1234', '우동훈'  );
+insert into acorntbl_jpa(id, pw, name)  values('j.choi', '8256', '최정문'  );
+insert into acorntbl_jpa(id, pw, name)  values('popstar', '0909', '이성빈'  );
+insert into acorntbl_jpa(id, pw, name)  values('SMY', '0408', '손민영'  );
+insert into acorntbl_jpa(id, pw, name)  values('jeongjiwon', '1007', '정지원'  );
+insert into acorntbl_jpa(id, pw, name)  values('you__win_', '0610', '유승재' );
+insert into acorntbl_jpa(id, pw, name)  values('sword', '0723', '최성원'  );
+insert into acorntbl_jpa(id, pw, name)  values('ldh', '5566', '이대훈'  );
+insert into acorntbl_jpa(id, pw, name)  values('mhkim', '3616', '김민희' );
+insert into acorntbl_jpa(id, pw, name)  values('entlrqkr', '7126', '박두식'  );
+insert into acorntbl_jpa(id, pw, name)  values('LHR', '1111', '이혜린' );
+insert into acorntbl_jpa(id, pw, name)  values('gyu', '1019', '이동규'  );
+insert into acorntbl_jpa(id, pw, name)  values('hyunhee', '1019', '김현희'  );
+insert into acorntbl_jpa(id, pw, name)  values('seoho', '1019', '김서호'  );
+insert into acorntbl_jpa(id, pw, name)  values('heeyeon', '1019', '전희연'  );
+insert into acorntbl_jpa(id, pw, name)  values('taemin', '9999', '윤태민'  );
+
+commit;
+select * from acorntbl_jpa;
+
+
+
+
+

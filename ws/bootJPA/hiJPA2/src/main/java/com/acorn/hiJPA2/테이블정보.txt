@@ -1,0 +1,66 @@
+
+drop table acorntbl_jpa2;
+drop table team;
+
+
+CREATE TABLE team (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 팀 ID (Primary Key)
+    name VARCHAR(255) NOT NULL           -- 팀 이름
+);
+
+
+
+CREATE TABLE acorntbl_jpa2 (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 멤버 ID (Primary Key)
+    name VARCHAR(255) NOT NULL,            -- 멤버 이름
+    team_id BIGINT,                        -- 팀 ID (Foreign Key)
+    CONSTRAINT fk_member_team              -- Foreign Key Constraint
+        FOREIGN KEY (team_id)
+        REFERENCES team(id)                -- 참조: team 테이블의 id
+        ON DELETE SET NULL                 -- 팀 삭제 시 NULL로 설정
+        ON UPDATE CASCADE                  -- 팀 ID 변경 시 연쇄 업데이트
+);
+
+
+
+
+
+insert into team (name)  values( '우동훈조' );
+insert into team (name)  values( '유승재조' );
+insert into team (name)  values( '정지원조' );
+commit;
+
+
+
+insert into  acorntbl_jpa2(   name, team_id)  values   ('우동훈'  ,  1) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ('손민영'  ,  1 ) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '박두식' ,  1 ) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '김현희' , 1) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '이동규' ,  1) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '김서호' ,  1) ;
+
+
+
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '유승재' ,  2) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '김민희' ,  2 ) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '박성욱'  ,   2 ) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '이대훈' , 2) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '이성빈' ,  2) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '윤태민',  2) ;
+
+
+
+
+
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '정지원'  ,  3) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '이혜린'  ,  3 ) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '전희연' ,  3 ) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '최정문' ,  3) ;
+insert into  acorntbl_jpa2(   name, team_id)  values   ( '최성원' ,  3) ;
+
+
+ commit;
+
+
+select * from team;
+select * from acorntbl_jpa2;

@@ -1,0 +1,29 @@
+JPA 노션 링크 !!
+
+https://www.notion.so/JPA-14fc031ede41809f9c76e2594151fc84
+
+
+
+
+오후실습 :
+
+1. 다음내용을 가진 테이블과 엔티티를 만드시오
+  아이디, 이름, 나이, 취미
+
+2. 기본 crud 작성하고 테스트 하시오 , 등록,조회, 전체조회, 삭제, 변경( spring data jpa가 제공하는 기본매서드 사용하기)
+
+3. 쿼리매서드를 작성하고 테스트 하시오
+   findByName( String name)
+   findByNameAndAge( int age)
+   findByNameConataining( String name)
+   findByAgeBetween( int min, int max);
+   //같은 취미로 조회하기 
+
+4. 위의 매서드를  jpql로 작성하고 테스트하기 
+
+
+5. 페이징쿼리 작성하고 테스트하기 
+
+
+
+jpql : 엔티티를 대상으로 쿼리를 작성한다.   

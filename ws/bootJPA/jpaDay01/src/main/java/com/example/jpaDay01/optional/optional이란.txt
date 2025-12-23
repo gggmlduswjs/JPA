@@ -1,0 +1,15 @@
+
+
+Optional : 래퍼클래스
+: null을 직접 다루지 않고 Optional 객체로 감싸서 처리하는 클래스
+
+--null 체크 강제
+--널 포인터 익셉션 예방
+--값이 없을 수 있음을 명확히 표현
+
+get(): 객체를 꺼내옴 , 없을 경우 오류발생
+isPresent() : true, false (객체 유무 반환)
+ifPresent() : 매개변수 Consumer 구현 (객체가 존재하면 그 객체를 사용하면 됨)
+orElse() : 없는 경우 기본값을 생성할 수 있음
+orEleThrow() : 없는 경우 예외 발생
+orElseThrow() : 없는 경우 예외 발생 Supplier 매개변수로 제공 받는 매서드, 내가 원하는 예외를 발생시킬 수 있음

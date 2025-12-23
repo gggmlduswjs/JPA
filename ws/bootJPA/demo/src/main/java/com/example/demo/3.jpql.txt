@@ -1,0 +1,63 @@
+✅ JPQL 예제 정리
+1. 전체 조회
+@Query("SELECT c FROM Customer c")
+List<Customer> findAllCustomers();
+
+
+Customer는 엔티티 이름
+c는 별칭(alias)
+SQL: SELECT * FROM customer
+
+
+2. 조건 조회
+@Query("SELECT c FROM Customer c WHERE c.name = :name")
+List<Customer> findByName(@Param("name") String name);
+:name은 파라미터 바인딩
+
+SQL: SELECT * FROM customer WHERE name = ?
+
+
+3. 정렬 (ORDER BY)
+@Query("SELECT c FROM Customer c ORDER BY c.createdDate DESC")
+List<Customer> findAllOrderByCreatedDate();
+
+4. 특정 필드만 조회
+@Query("SELECT c.name FROM Customer c")
+List<String> findAllNames();
+반환 타입은 List<String> 등 필드 타입과 맞춰야 함
+
+5. 집계 함수 사용 (COUNT, SUM, AVG, MAX, MIN)
+@Query("SELECT COUNT(c) FROM Customer c")
+Long countAllCustomers();
+
+SQL
+SELECT COUNT(*) FROM customer;
+
+@Query("SELECT AVG(c.age) FROM Customer c")
+Double averageAge();
+
+SQL
+SELECT AVG(age) FROM customer;
+
+6. 그룹핑 (GROUP BY)
+
+@Query("SELECT c.grade AS grade, COUNT(c) AS count FROM Customer c GROUP BY c.grade")
+List<GradeCount> countByGrade();
+GradeCount는 결과를 담을 DTO 인터페이스 또는 클래스입니다 (Spring Data Projection 가능)
+
+[sql]
+
+SELECT grade, COUNT(*) AS count
+FROM customer
+GROUP BY grade;
+
+
+✅ 파라미터 바인딩
+이름 기반 바인딩 (추천)
+
+@Query("SELECT c FROM Customer c WHERE c.name = :name")
+List<Customer> findByName(@Param("name") String name);
+
+위치 기반 바인딩 (순서 중요)
+@Query("SELECT c FROM Customer c WHERE c.name = ?1")
+List<Customer> findByName(String name);

@@ -1,0 +1,60 @@
+
+drop table memberfinal;
+drop table team;
+
+
+CREATE TABLE team (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 팀 ID (Primary Key)
+    name VARCHAR(255) NOT NULL           -- 팀 이름
+);
+
+
+
+insert into team (name)  values( '우동훈조' );
+insert into team (name)  values( '정지원조' );
+insert into team (name)  values( '유승재조' );
+commit;
+
+
+
+drop table acorn_member3;
+
+
+CREATE TABLE acorn_member3 (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    team_id BIGINT,
+    CONSTRAINT fk_member_team２ FOREIGN KEY (team_id)
+        REFERENCES team (id)
+        ON DELETE SET NULL ON UPDATE CASCADE
+);
+　
+
+
+insert into  acorn_member3(   name, team_id)  values   ('우동훈'  ,  1) ;
+insert into  acorn_member3(   name, team_id)  values   ('손민영'  ,  1 ) ;
+insert into  acorn_member3(   name, team_id)  values   ( '박두식' ,  1 ) ;
+insert into  acorn_member3(   name, team_id)  values   ( '김현희' , 1) ;
+insert into  acorn_member3(   name, team_id)  values   ( '이동규' ,  1) ;
+insert into  acorn_member3(   name, team_id)  values   ( '김서호' ,  1) ;
+
+
+
+insert into  acorn_member3(   name, team_id)  values   ( '정지원' ,  2) ;
+insert into  acorn_member3(   name, team_id)  values   ( '이혜린' ,  2 ) ;
+insert into  acorn_member3(   name, team_id)  values   ( '최정문'  ,   2 ) ;
+insert into  acorn_member3(   name, team_id)  values   ( '최성원' , 2) ;
+insert into  acorn_member3(   name, team_id)  values   ( '전희연' ,  2) ;
+
+
+　
+
+
+insert into  acorn_member3(   name, team_id)  values   ( '유승재'  ,  3) ;
+insert into  acorn_member3(   name, team_id)  values   ( '김민희'  ,  3 ) ;
+insert into  acorn_member3(   name, team_id)  values   ( '박성욱' ,  3 ) ;
+insert into  acorn_member3(   name, team_id)  values   ( '이성빈' ,  3) ;
+insert into  acorn_member3(   name, team_id)  values   ( '윤태민' ,  3) ;
+insert into  acorn_member3(   name, team_id)  values   ( '이대훈',  3) ;
+
+ commit;

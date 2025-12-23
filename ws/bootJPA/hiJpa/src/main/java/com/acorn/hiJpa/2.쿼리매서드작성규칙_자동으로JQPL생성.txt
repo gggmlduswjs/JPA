@@ -1,0 +1,19 @@
+spring data에서 제공하는 기능
+매서드이름으로 JPQL을 자동생성함
+
+
+
+findBy + [엔티티의 필드 이름] + [조건 키워드]
+
+
+값이 일치하는지 검사  	findByName(String name)	... WHERE name = ?
+Between	범위 내 값 검사	findByAgeBetween(int start, int end)	... WHERE age BETWEEN ? AND ?
+LessThan	값이 작은지 검사	findByAgeLessThan(int age)	... WHERE age < ?
+GreaterThan	값이 큰지 검사	findByAgeGreaterThan(int age)	... WHERE age > ?
+Like	문자열 패턴 매칭	findByNameLike(String pattern)	... WHERE name LIKE ?
+Containing	특정 문자열 포함	findByNameContaining(String name)	... WHERE name LIKE %?%
+StartingWith	특정 문자열로 시작	findByNameStartingWith(String name)	... WHERE name LIKE ?%
+EndingWith	특정 문자열로 끝남	findByNameEndingWith(String name)	... WHERE name LIKE %?
+In	여러 값 중 하나에 해당하는지 검사	findByIdIn(List<Long> ids)	... WHERE id IN (?)
+IsNull, IsNotNull	NULL 여부 검사	findByEmailIsNull()	... WHERE email IS NULL
+OrderBy	정렬 적용	findByNameOrderByAgeAsc(String name)	... ORDER BY age ASC

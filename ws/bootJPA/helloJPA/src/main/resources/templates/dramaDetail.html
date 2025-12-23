@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>드라마 상세</h1>
+
+<div th:if="${drama != null}">
+    <p>제목: <span th:text="${drama.title}"></span></p>
+    <p>배우: <span th:text="${drama.actors}"></span></p>
+    <img th:src="${drama.imageUrl}" width="200"/>
+</div>
+
+<div th:if="${drama == null}">
+    <p th:text="${message}"></p>
+</div>
+
+<a href="/dramas/page?page=0&size=5">목록으로</a>
+</body>
+</html>
